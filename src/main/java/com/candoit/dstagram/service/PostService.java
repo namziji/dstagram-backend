@@ -23,6 +23,7 @@ public class PostService {
     }
 
     public Post updatePost(int boardId, Post post) {
+
         return this.postRepository.save(post);
     }
 

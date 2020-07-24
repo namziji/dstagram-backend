@@ -33,16 +33,17 @@ public class PostController {
     @GetMapping("{userId}/board")
     @ResponseStatus(HttpStatus.CREATED)
     public Post createPost(@RequestBody Post post) {
+
         return this.postService.createPost(post);
     }
 
-    @GetMapping("/{userid}/board/{boardId}")
+    @GetMapping("/{userId}/board/{boardId}")
     @ResponseStatus(HttpStatus.OK)
     public Post updatePost(@PathVariable int boardId, @RequestBody Post post) {
         return this.postService.updatePost(boardId, post);
     }
 
-    @GetMapping("/{userid}/board/{boardId}")
+    @GetMapping("/{userId}/board/{boardId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletePost(@PathVariable int boardId) {
         this.postService.deletePost(boardId);
