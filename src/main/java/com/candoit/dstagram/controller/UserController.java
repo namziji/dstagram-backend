@@ -28,7 +28,15 @@ public class UserController {
 
     @RequestMapping("/sign-up")
     @ResponseStatus(HttpStatus.CREATED)
-    public User signUp(User user) {
+    public User signUp(String email, String password, String nickname) {
+        String email = email;
+        String password = password;
+        String nickname = nickname;
+
+
+
+
+
         return this.userService.signUp(user);
     }
 
