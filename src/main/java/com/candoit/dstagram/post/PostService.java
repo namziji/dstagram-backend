@@ -1,7 +1,6 @@
-package com.candoit.dstagram.service;
+package com.candoit.dstagram.post;
 
-import com.candoit.dstagram.model.Post;
-import com.candoit.dstagram.repository.PostRepository;
+import com.candoit.dstagram.post.model.Post;
 import org.springframework.stereotype.Service;
 import java.util.List;
 

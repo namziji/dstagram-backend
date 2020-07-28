@@ -1,4 +1,4 @@
-package com.candoit.dstagram.model;
+package com.candoit.dstagram.post.model;
 
 import lombok.Getter;
 import lombok.Setter;

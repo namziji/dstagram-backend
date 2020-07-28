@@ -1,34 +1,33 @@
-package com.candoit.dstagram.controller;
+package com.candoit.dstagram.user;
 
-import com.candoit.dstagram.model.User;
-import com.candoit.dstagram.repository.UserRepository;
-import com.candoit.dstagram.service.UserService;
-
-
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.candoit.dstagram.user.model.User;
+import com.candoit.dstagram.security.model.AuthUser;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @Controller("UserController")
 @RequestMapping("/users")
 public class UserController {
 
     private UserService userService;
-    private UserRepository userRepository;
+    private PasswordEncoder passwordEncoder;
 
 
-    public UserController(UserService userService, UserRepository userRepository) {
+    public UserController(UserService userService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
-        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @RequestMapping("/sign-up")
     @ResponseStatus(HttpStatus.CREATED)
-    public User signUp(User user) {
+    public User signUp(@RequestBody AuthUser authUser, String nickname) {
+        User user = new User(0, authUser.getEmail(), passwordEncoder.encode(authUser.getPassword()),nickname, "ROLE_USER", true);
         return this.userService.signUp(user);
     }
 

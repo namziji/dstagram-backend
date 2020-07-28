@@ -1,11 +1,11 @@
-package com.candoit.dstagram.service;
+package com.candoit.dstagram.user;
 
-import com.candoit.dstagram.model.User;
-import com.candoit.dstagram.repository.UserRepository;
+import com.candoit.dstagram.user.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.HttpClientErrorException;
 
 @Transactional
 @Service
@@ -15,8 +15,13 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     public User signUp(User user) {
-        return this.userRepository.save(user);
+
+        return userRepository.save(user);
     }
 
     public void signIn() {
