@@ -21,6 +21,8 @@ build/
 *.iml
 *.ipr
 out/
+!**/src/main/**
+!**/src/test/**
 
 ### NetBeans ###
 /nbproject/private/
@@ -31,3 +33,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# no .a files
+# *.a
+*.DS_Store
+application.yml
+aws.yml

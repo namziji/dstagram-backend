@@ -22,20 +22,21 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
     @NonNull
     private BCryptPasswordEncoder passwordEncoder;
 
+    @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         UsernamePasswordAuthenticationToken token = (UsernamePasswordAuthenticationToken) authentication;
 
         AuthUser authUser = (AuthUser) token.getPrincipal();
-        String email = authUser.getEmail();
+        String email = token.getName();
         String password = (String) token.getCredentials();
         SecurityUser user = (SecurityUser) userAuthService.loadUserByUsername(email);
 
         if(!passwordEncoder.matches(password, user.getPassword())) {
-            throw new BadCredentialsException(email);
+            throw new BadCredentialsException(email + "Invalid password");
         }
 
         if(!user.isEnabled()) {
-            throw new BadCredentialsException(email);
+            throw new BadCredentialsException(email + "invalid user");
         }
 
         return new UsernamePasswordAuthenticationToken(user, password, user.getAuthorities());

@@ -14,7 +14,7 @@ import java.util.Map;
 
 @Component
 public class TokenUtils {
-    private static final String secretKey = "ThisisA_SecretKeyForJwtExample";
+    private static final String secretKey = "JWT password";
 
     public String generateJwtToken(AuthUser authUser) {
         JwtBuilder builder = Jwts.builder()

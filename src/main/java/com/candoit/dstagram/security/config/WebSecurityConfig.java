@@ -41,10 +41,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .authorizeRequests()
-                .antMatchers(POST, "users/sign-up").permitAll()
-                .antMatchers(GET, "/users").permitAll()
+        http.csrf().disable().authorizeRequests()
+                .antMatchers(POST, "/users/sign-up").permitAll()
+                .antMatchers(GET, "/users/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -69,7 +68,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public JwtAuthenticationFilter JwtAuthenticationFilter() throws Exception {
         JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager());
-        jwtAuthenticationFilter.setFilterProcessesUrl("user/sign-in");
+        jwtAuthenticationFilter.setFilterProcessesUrl("/users/sign-in");
         jwtAuthenticationFilter.setAuthenticationSuccessHandler(customLoginSuccessHandler());
         jwtAuthenticationFilter.afterPropertiesSet();
         return jwtAuthenticationFilter;

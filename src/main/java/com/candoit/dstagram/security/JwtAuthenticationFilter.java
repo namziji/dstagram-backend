@@ -23,7 +23,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         UsernamePasswordAuthenticationToken authRequest;
         try {
             AuthUser authUser = new ObjectMapper().readValue(request.getInputStream(), AuthUser.class);
-            authRequest = new UsernamePasswordAuthenticationToken(authUser, authUser.getPassword());
+            authRequest = new UsernamePasswordAuthenticationToken(authUser.getEmail(), authUser.getPassword());
         } catch (IOException exception) {
             throw new RuntimeException("NotFound email");
         }

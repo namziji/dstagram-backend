@@ -16,32 +16,20 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(updatable = false, nullable = false)
-    private int userId;
-
-    @Column
+    @Column(nullable = false)
     private String email;
 
     @Column
     private String password;
 
-    @Column
+    @Column(nullable = false)
     private String nickname;
 
     @Column
     private String role;
 
-    @Column
-    private boolean enable;
-
     public AuthUser toAuthUser() {
         return new AuthUser(email, password);
-    }
-
-    public static class NullUser extends  User {
-        public NullUser(){ super(0, "--", "--", "--", "ROLE_USER", false);}
     }
 
 }
