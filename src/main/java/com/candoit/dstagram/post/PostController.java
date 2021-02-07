@@ -1,8 +1,6 @@
-package com.candoit.dstagram.controller;
+package com.candoit.dstagram.post;
 
-import com.candoit.dstagram.model.Post;
-import com.candoit.dstagram.repository.PostRepository;
-import com.candoit.dstagram.service.PostService;
+import com.candoit.dstagram.post.model.Post;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,7 +22,7 @@ public class PostController {
         this.postService = postService;
     }
 
-    @GetMapping("/{userId}/board")
+    @GetMapping("/board")
     @ResponseStatus(HttpStatus.OK)
     public List<Post> getPosts() {
         return this.postService.getPosts();
